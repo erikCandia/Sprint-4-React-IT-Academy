@@ -51,11 +51,27 @@ function moviesAverageByCategory(array, category = "Crime") { //No puedo pasar c
 
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes(array) {
+  const duracionMin = array.map(element => { 
+    //Uso un operador ternario para dividir la duracion de cada pelicula en array de strings
+    const sizeDuration = element.duration.split(' ').length //para ver el tamaño de la propiedad duration
+    const horas = parseInt(element.duration.split(" ")[0])//pongo las horas de duracion en minutos
+    const minutos = parseInt(element.duration.split(" ")[1])//pguardo en esta variable los minutos
+    const durationMovie = sizeDuration == 2 ? horas*60 + minutos : horas*60; //operador ternario, 
+    element = {...element} 
+    element.duration = durationMovie
+    return element
+  });
+  //console.log(duracionMin)
+  return duracionMin;
 }
 
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear() {
-  
+function bestFilmOfYear(array, anyo) {
+  anyo = 1994;
+  const resultado = array.filter(element => element.year === anyo);
+  const bestMovie = resultado.sort(element => element.year);
+  console.log(bestMovie[0]);
+  return bestMovie;
 }
 
 
